@@ -1,4 +1,5 @@
 #pragma once
+
 enum type
 {
     CPU_START,
@@ -9,8 +10,9 @@ enum type
     DISK2_START,
     DISK2_FINISH,
     NETWORK_START,
-    NETWORK_FINISH
+    NETWORK_MAX
 };
+
 struct config
 {
     int SEED;
@@ -18,8 +20,8 @@ struct config
     int FIN_TIME;
     int ARRIVE_MIN;
     int ARRIVE_MAX;
-    int QUIT_PROB;
-    int NET_PROB;
+    double QUIT_PROB;
+    double NET_PROB;
     int CPU_MIN;
     int CPU_MAX;
     int DISK1_MIN;

@@ -2,6 +2,7 @@
 #include <string>
 #include "logging.h"
 #include "helper.h"
+#include "randomizer.h"
 
 int main(int argc, char ** argv)
 {
@@ -12,11 +13,12 @@ int main(int argc, char ** argv)
     }
     else if (argc == 2)
     {
-        string path = argv[1];
         config cfg;
-        readConfig(path, cfg);
-        cout << path << endl;
+        string path = argv[1];
+        string content = readFile(path);
+        readConfig(content, cfg);
         printConfig(cfg);
+    
     }
     else 
     {

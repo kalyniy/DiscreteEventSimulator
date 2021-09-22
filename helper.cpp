@@ -18,8 +18,8 @@ vector<string> split(const string &s, char delim) {
   string item;
   vector<string> elems;
   while (getline(ss, item, delim)) {
-    elems.push_back(item);
-    // elems.push_back(std::move(item)); // if C++11 (based on comment from @mchiasson)
+    //elems.push_back(item);
+     elems.push_back(std::move(item)); // if C++11 (based on comment from @mchiasson)
   }
   return elems;
 }
@@ -44,9 +44,6 @@ string readFile(string path)
 }
 void writeFile(string path, string data)
 {
-    /*ofstream file(path.c_str());
-    file << data;   //overwrites it.
-    file.close();*/ 
     ofstream file;
     file.open(path, ios_base::app); // append instead of overwrite
     file << data << endl; //append with new line
@@ -75,24 +72,73 @@ int getValue(string settings, string value)
         
     }
     
-    return 0;
+    return 0;   
 }
-void readConfig(string path, config &cfg)
+void readConfig(string settings, config &cfg)
 {
-    string settings = readFile(path);
-    cfg.SEED = getValue(settings, "SEED");
-    cfg.INIT_TIME = getValue(settings, "INIT_TIME");
-    cfg.FIN_TIME = getValue(settings, "FIN_TIME");
-    cfg.ARRIVE_MIN = getValue(settings, "ARRIVE_MIN");
-    cfg.ARRIVE_MAX = getValue(settings, "ARRIVE_MAX");
-    cfg.QUIT_PROB = getValue(settings, "QUIT_PROB");
-    cfg.NET_PROB = getValue(settings, "NET_PROB");
-    cfg.CPU_MIN = getValue(settings, "CPU_MIN");
-    cfg.CPU_MAX = getValue(settings, "CPU_MAX");
-    cfg.DISK1_MIN = getValue(settings, "DISK1_MIN");
-    cfg.DISK1_MAX = getValue(settings, "DISK1_MAX");
-    cfg.DISK2_MIN = getValue(settings, "DISK2_MIN");
-    cfg.DISK2_MAX = getValue(settings, "DISK2_MAX");
-    cfg.NETWORK_MIN = getValue(settings, "NETWORK_MIN");
-    cfg.NETWORK_MAX = getValue(settings," NETWORK_MAX");
+    vector<string> rows = split(settings, '\n');
+    for(int i = 0; i < rows.size(); i++)
+    {
+        vector<string> columns = split(rows[i], ' ');
+        if(columns[0].compare("SEED") == 0)
+        {
+            cfg.SEED = stoi(columns[1]);
+        }
+        else if(columns[0].compare("INIT_TIME") == 0)
+        {
+            cfg.INIT_TIME = stoi(columns[1]);
+        }
+        else if(columns[0].compare("FIN_TIME") == 0)
+        {
+            cfg.FIN_TIME = stoi(columns[1]);
+        }
+        else if(columns[0].compare("ARRIVE_MIN") == 0)
+        {
+            cfg.ARRIVE_MIN = stoi(columns[1]);
+        }
+        else if(columns[0].compare("ARRIVE_MAX") == 0)
+        {
+            cfg.ARRIVE_MAX = stoi(columns[1]);
+        }
+        else if(columns[0].compare("QUIT_PROB") == 0)
+        {
+            cfg.QUIT_PROB = stod(columns[1]);
+        }
+        else if(columns[0].compare("NETWORK_PROB") == 0)
+        {
+            cfg.NET_PROB = stod(columns[1]);
+        }
+        else if(columns[0].compare("CPU_MIN") == 0)
+        {
+            cfg.CPU_MIN = stod(columns[1]);
+        }
+        else if(columns[0].compare("CPU_MAX") == 0)
+        {
+            cfg.CPU_MAX = stod(columns[1]);
+        }
+        else if(columns[0].compare("DISK1_MIN") == 0)
+        {
+            cfg.DISK1_MIN = stod(columns[1]);
+        }
+        else if(columns[0].compare("DISK1_MAX") == 0)
+        {
+            cfg.DISK1_MAX = stod(columns[1]);
+        }
+        else if(columns[0].compare("DISK2_MIN") == 0)
+        {
+            cfg.DISK2_MIN = stod(columns[1]);
+        }
+        else if(columns[0].compare("DISK2_MAX") == 0)
+        {
+            cfg.DISK2_MAX = stod(columns[1]);
+        }
+        else if(columns[0].compare("NETWORK_MIN") == 0)
+        {
+            cfg.NETWORK_MIN = stod(columns[1]);
+        }
+        else if(columns[0].compare("NETWORK_MAX") == 0)
+        {
+            cfg.NETWORK_MAX = stod(columns[1]);
+        }
+    }
 }
