@@ -10,7 +10,7 @@ enum type
     DISK2_START,
     DISK2_FINISH,
     NETWORK_START,
-    NETWORK_MAX
+    NETWORK_FINISH
 };
 
 struct config
@@ -36,4 +36,10 @@ struct event
     int id;
     int time;
     type t;
+};
+struct compareEvents {
+    bool operator()(event e1, event e2)
+    {
+        return e1.time > e2.time;
+    }
 };
