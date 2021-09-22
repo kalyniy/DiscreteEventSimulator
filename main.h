@@ -1,3 +1,4 @@
+#pragma once
 enum type
 {
     CPU_START,
@@ -28,4 +29,9 @@ struct config
     int NETWORK_MIN;
     int NETWORK_MAX;
 };
-struct event;
+struct event
+{
+    int id;
+    int time;
+    type t;
+};
