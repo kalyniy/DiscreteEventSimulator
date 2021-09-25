@@ -17,5 +17,10 @@ void printConfig(config &cfg)
     cout << "DISK2_MAX: " << cfg.DISK2_MAX << endl;
     cout << "NETWORK_MIN: " << cfg.NETWORK_MIN << endl;
     cout << "NETWORK_MAX: " << cfg.NETWORK_MAX << endl;
-
+}
+string eventToString(event e)
+{
+    char buffer[256];
+    sprintf(buffer, "event[id: %d, time: %d, type: %d]", e.id, e.time, (int)e.t);
+    return buffer;
 }

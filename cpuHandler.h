@@ -16,5 +16,6 @@ class CPUHandler
         queue<event> networkQueue;
         config settings;
         void run(config &cfg);
+        
     private:
 };

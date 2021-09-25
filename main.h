@@ -2,9 +2,10 @@
 
 enum type
 {
+    SIMULATION_START,
+    SIMULATION_FINISH,
     CPU_START,
     CPU_FINISH,
-    SIMULATION_FINISH,
     DISK1_START,
     DISK1_FINISH,
     DISK2_START,
@@ -36,6 +37,10 @@ struct event
     int id;
     int time;
     type t;
+    event(int id, int time, type t)
+      : id(id), time(time), t(t)
+    {
+    }
 };
 struct compareEvents {
     bool operator()(event e1, event e2)
